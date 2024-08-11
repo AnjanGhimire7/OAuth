@@ -1,0 +1,25 @@
+{
+  "name": "oauth2",
+  "version": "1.0.0",
+  "description": "This is an oauth project",
+  "main": "index.js",
+  "author": "Anjan",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.5.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/mongoose": "^5.11.97",
+    "nodemon": "^3.1.4",
+    "prettier": "^3.3.3"
+  }
+}

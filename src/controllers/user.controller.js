@@ -51,4 +51,12 @@ const handleSocialLogin = asyncHandler(async (req, res) => {
 const userProfile = asyncHandler(async (req, res) => {
   res.send("hello from profile!!!!");
 });
-export { handleSocialLogin, userProfile };
+const initialPage = asyncHandler(async (req, res) => {
+  res.send(
+    "<a href='http://localhost:5256/api/v1/users/google' >sign up with google </a>"
+  );
+});
+const failureRedirect = asyncHandler(async (req, res) => {
+  res.send("failed while logging!!!");
+});
+export { handleSocialLogin, userProfile, initialPage, failureRedirect };

@@ -3,33 +3,33 @@ import { ApiError } from "../utils/ApiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
 
-const generateAccessAndRefreshTokens = async (userId) => {
+const generateAccessAndRefereshTokens = async (userId) => {
   try {
     const user = await User.findById(userId);
-
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
 
-    // attach refresh token to the user document to avoid refreshing the access token with multiple refresh tokens
     user.refreshToken = refreshToken;
-
     await user.save({ validateBeforeSave: false });
+
     return { accessToken, refreshToken };
   } catch (error) {
     throw new ApiError(
       500,
-      "Something went wrong while generating the access token"
+      "Something went wrong while generating referesh and access token"
     );
   }
 };
+
+
 const handleSocialLogin = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user?._id);
+  const user = await User.findById(req.user?.id);
 
   if (!user) {
     throw new ApiError(404, "User does not exist");
   }
 
-  const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(
+  const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(
     user._id
   );
 
@@ -53,7 +53,7 @@ const userProfile = asyncHandler(async (req, res) => {
 });
 const initialPage = asyncHandler(async (req, res) => {
   res.send(
-    "<a href='http://localhost:5256/api/v1/users/google' >sign up with google </a>"
+    "<a href='http://localhost:5256/api/v1/google' >sign up with google </a>"
   );
 });
 const failureRedirect = asyncHandler(async (req, res) => {

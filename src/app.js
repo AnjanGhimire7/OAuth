@@ -4,6 +4,7 @@ import helmet from "helmet";
 import passport from "passport";
 import session from "express-session";
 import cookieParser from "cookie-parser";
+
 const app = express();
 
 app.use(
@@ -31,9 +32,8 @@ app.use(passport.session()); // persistent login sessions
 import userRouter from "./routes/user.route.js";
 import { errorHandler } from "./middlewares/error.middlewares.js";
 //declaration of the route
-app.use("/api/v1/users", userRouter);
-app.use(errorHandler)
+app.use("/api/v1", userRouter);
+app.use(errorHandler);
 // common error handling middleware
-
 
 export { app };

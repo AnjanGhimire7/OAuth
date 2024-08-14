@@ -1,9 +1,9 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { User } from "../models/user.model.js";
-import { UserLoginType } from "../constants.js";
+import { UserLoginType } from "../constant.js";
 import { ApiError } from "../utils/ApiError.js";
-
+import "dotenv/config";
 passport.serializeUser((user, done) => {
   done(null, user._id);
 });
@@ -32,8 +32,8 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-      //  console.log(profile);
-        
+        //  console.log(profile);
+
         // Ensure profile.emails is available and has at least one email
         const email =
           (profile.emails && profile.emails[0] && profile.emails[0].value) ||
@@ -75,7 +75,7 @@ passport.use(
             loginType: UserLoginType.GOOGLE,
           });
 
-          const savedUser = await newUser.save({validateBeforeSave:false});
+          const savedUser = await newUser.save({ validateBeforeSave: false });
           done(null, savedUser);
         }
       } catch (error) {

@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { AvailableSocialLogins, UserLoginType } from "../constant.js";
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema(
   {

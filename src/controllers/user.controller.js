@@ -21,9 +21,8 @@ const generateAccessAndRefereshTokens = async (userId) => {
   }
 };
 
-
 const handleSocialLogin = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user?.id);
+  const user = await User.findById(user._id);
 
   if (!user) {
     throw new ApiError(404, "User does not exist");
@@ -59,4 +58,5 @@ const initialPage = asyncHandler(async (req, res) => {
 const failureRedirect = asyncHandler(async (req, res) => {
   res.send("failed while logging!!!");
 });
+
 export { handleSocialLogin, userProfile, initialPage, failureRedirect };

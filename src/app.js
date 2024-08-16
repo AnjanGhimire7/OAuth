@@ -4,6 +4,7 @@ import helmet from "helmet";
 import passport from "passport";
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import MongoStore from "connect-mongo";
 
 const app = express();
 
@@ -24,11 +25,19 @@ app.use(
     secret: process.env.EXPRESS_SESSION_SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 60 * 1000,
+    },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_DB_URI,
+      collectionName: "mysession",
+    }),
   })
 ); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 //import routes
+
 import userRouter from "./routes/user.route.js";
 import { errorHandler } from "./middlewares/error.middlewares.js";
 //declaration of the route

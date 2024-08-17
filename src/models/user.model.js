@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { AvailableSocialLogins, UserLoginType } from "../constant.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 const userSchema = new Schema(
   {
     avatar: {

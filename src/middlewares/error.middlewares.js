@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { ApiError } from "../utils/ApiError.js";
-
+import logger from "../logger/winston.logger.js";
 const errorHandler = (err, req, res, next) => {
   let error = err;
 
@@ -24,7 +24,7 @@ const errorHandler = (err, req, res, next) => {
     message: error.message,
     ...(process.env.NODE_ENV === "development" ? { stack: error.stack } : {}), // Error stack traces should be visible in development for debugging
   };
-
+  logger.error(`${error.message}`);
   // Send error response
   return res.status(error.statusCode).json(response);
 };

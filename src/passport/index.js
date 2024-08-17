@@ -32,7 +32,7 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        //  console.log(profile);
+        
 
         // Ensure profile.emails is available and has at least one email
         const email =

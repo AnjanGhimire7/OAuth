@@ -25,9 +25,11 @@ app.use(
   session({
     secret: process.env.EXPRESS_SESSION_SECRET,
     resave: true,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    
     cookie: {
-      maxAge: 60 * 1000, //expires after 60 second
+      maxAge: 60 * 1000,
+       //expires after 60 second
     },
     store: MongoStore.create({
       //it is used to store session on database

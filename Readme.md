@@ -1,11 +1,9 @@
-
 ## clustering application using pm2
 
-pm2 Install :
-yarn global add pm2
-run :
-pm2 start src/index.js -i max //this will provide number of cluster as much as cpu core availabe on the computer.
-
+- pm2 Install :
+- yarn global add pm2
+- run :
+- pm2 start src/index.js -i max //this will provide number of cluster as much as cpu core availabe on the computer.
 
 ## Technologies Used
 
